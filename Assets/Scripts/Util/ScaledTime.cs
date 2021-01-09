@@ -22,4 +22,12 @@ public static class ScaledTime
             return Time.fixedDeltaTime * TimeScale;
         }
     }
+
+    public static float time
+    {
+        get
+        {
+            return Time.time * TimeScale;
+        }
+    }
 }
