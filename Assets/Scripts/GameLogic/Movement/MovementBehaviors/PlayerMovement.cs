@@ -4,6 +4,8 @@ using UnityEngine;
 
 
 [System.Serializable]
+
+[CreateAssetMenu(menuName = "Movement Behaviors/Player")]
 public class PlayerMovement : MovementBehavior
 {
     public Movement movement_controller;
@@ -16,11 +18,11 @@ public class PlayerMovement : MovementBehavior
 
     public Boundary bounds;
 
-    public override MovementPacket FixedApply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2))
+    public override MovementPacket FixedApply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2), GameObject source = default(GameObject))
     {
         if (init)
         {
-            prior = InitPacket(t, forward, position);
+            prior = InitPacket(t, forward, position, source);
         }
 
         jump_timer -= ScaledTime.fixedDeltaTime;
@@ -32,11 +34,11 @@ public class PlayerMovement : MovementBehavior
         return prior;
     }
 
-    public override MovementPacket Apply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2))
+    public override MovementPacket Apply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2), GameObject source = default(GameObject))
     {
         if (init)
         {
-            prior = InitPacket(t, forward, position);
+            prior = InitPacket(t, forward, position, source);
             prior.type = MovementType.ClampedTeleport;
         }
 

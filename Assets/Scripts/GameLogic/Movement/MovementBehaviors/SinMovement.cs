@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+
+[CreateAssetMenu(menuName = "Movement Behaviors/Sin")]
 public class SinMovement : MovementBehavior
 {
     public float Phase;
     public float Frequency;
     public float Amplitude;
-    public float init_t;
 
     public static Vector2 Rotate (Vector2 v, float rad)
     {
@@ -18,29 +19,28 @@ public class SinMovement : MovementBehavior
         );
     }
 
-    public override MovementPacket Apply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2))
+    public override MovementPacket Apply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2), GameObject source = default(GameObject))
     {
         if (init)
         {
-            prior = InitPacket(t, forward, position);
+            prior = InitPacket(t, forward, position, source);
             prior.type = MovementType.Teleport;
         }
 
         return prior;
     }
 
-    public override MovementPacket FixedApply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2))
+    public override MovementPacket FixedApply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2), GameObject source = default(GameObject))
     {
         if (init)
         {
-            prior = InitPacket(t, forward, position);
+            prior = InitPacket(t, forward, position, source);
             prior.type = MovementType.Simple;
         }
 
-        if (init_t == 0)
-            init_t = prior.t;
+
+        float dt = (ScaledTime.time - prior.t);
         var v = prior.direction;
-        float dt = (init_t - ScaledTime.time);
         prior.direction = Rotate(prior.direction, Amplitude * Mathf.Sin(Phase + Frequency * dt));
         return prior;
     }

@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ArcadeMovement))]
-public class MovementPattern : MonoBehaviour
+public class MovementPattern : InitializableMonoBehavior
 {
     public ArcadeMovement movement_controller;
     [SerializeField]
     public List<MovementBehavior> behaviours;
 
+    public float init_time;
     public void Start()
     {
         movement_controller = GetComponent<ArcadeMovement>();
+        Init();
+    }
+
+    public override void Init()
+    {
+        init_time = ScaledTime.time;
     }
 
     public void AddBehaviour(MovementBehavior mb)
@@ -25,7 +32,7 @@ public class MovementPattern : MonoBehaviour
         if (b_count == 0)
             return;
 
-        MovementPacket packet = behaviours[0].Apply(new MovementPacket(), true, ScaledTime.time, movement_controller.transform.up) ;
+        MovementPacket packet = behaviours[0].Apply(new MovementPacket(), true, init_time, movement_controller.transform.up, movement_controller.transform.position, gameObject);
 
         for (int i = 1; i < b_count; i++)
         {
@@ -57,7 +64,7 @@ public class MovementPattern : MonoBehaviour
         if (b_count == 0)
             return;
 
-        MovementPacket packet = behaviours[0].FixedApply(new MovementPacket(), true, ScaledTime.time, movement_controller.transform.up);
+        MovementPacket packet = behaviours[0].FixedApply(new MovementPacket(),  true, init_time, movement_controller.transform.up, movement_controller.transform.position, gameObject);
 
         for (int i = 1; i < b_count; i++)
         {
@@ -81,6 +88,8 @@ public class MovementPattern : MonoBehaviour
                 break;
         }
     }
+
+
 
 
 }
