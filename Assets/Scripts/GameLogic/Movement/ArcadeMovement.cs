@@ -51,6 +51,8 @@ public class ArcadeMovement : Movement
     {
         if (direction == Vector2.zero) return;
 
+        PlayerController.Player.GetComponent<TeleportAnimation>().Spawn(body.position);
+
         var p = body.position + direction * BaseDodgeDistance;
         var clamped_pos = new Vector2(Mathf.Min(bounds.x, Mathf.Max(p.x, bounds.z)),
                                       Mathf.Min(bounds.y, Mathf.Max(p.y, bounds.w)));

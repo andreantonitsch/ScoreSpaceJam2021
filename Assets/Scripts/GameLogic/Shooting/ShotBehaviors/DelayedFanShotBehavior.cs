@@ -29,10 +29,13 @@ public class DelayedFanShotBehavior : ShotBehavior
             if (Randomize)
                 i = (int)(Random.value * BulletQuantity);
             var angle = Mathf.Lerp(AngleRange.x, AngleRange.y, (float)i / (float)BulletQuantity);
-            var v = obj.transform.up;
+
+
             var r = Rotate(forward, angle);
+            var rb = obj.GetComponent<Rigidbody2D>();
             obj.transform.up = Rotate(forward, angle);
             obj.transform.position = anchor + r * ArcDistance;
+
 
             if (Delay != 0)
                 yield return new WaitForSeconds(Delay);

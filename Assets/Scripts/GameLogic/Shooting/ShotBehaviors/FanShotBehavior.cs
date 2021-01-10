@@ -26,11 +26,13 @@ public class FanShotBehavior : ShotBehavior
         {
             i++;
             var angle = Mathf.Lerp(AngleRange.x, AngleRange.y, (float)i / (float)BulletQuantity);
-            var v = obj.transform.up;
+           
             var r = Rotate(forward, angle);
             obj.transform.up = Rotate(forward, angle);
             obj.transform.position = anchor;
-            
+
+
+
             yield return null;
         }
 

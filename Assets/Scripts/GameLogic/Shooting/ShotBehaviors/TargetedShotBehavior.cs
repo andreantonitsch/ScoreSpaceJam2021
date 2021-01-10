@@ -25,8 +25,10 @@ public class TargetedShotBehavior : ShotBehavior
 
             var v = new Vector2(Target.transform.position.x, Target.transform.position.y).normalized;
             var perp = Vector2.Perpendicular(v);
-            obj.transform.up = v;
+
             obj.transform.position = anchor + perp * min + perp * Spacing * i;
+            obj.transform.up = v;
+
             if (Delay != 0)
                 yield return null;
             else

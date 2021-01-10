@@ -23,6 +23,7 @@ public class ForwardShotBehavior : ShotBehavior
                 i = (int)(Random.value * BulletQuantity);
             obj.transform.position = anchor + perp * min + perp * Spacing * i;
             obj.transform.up = v;
+            
             i++;    
             if (Delay == 0)
                 yield return null;
