@@ -70,7 +70,7 @@ Material:
     m_Floats:
     - _BGBright: 0.07
     - _BGIntensity: 2.3
-    - _BGSat: 0.07
+    - _BGSat: 2
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -84,6 +84,7 @@ Material:
     - _NebulaHarmonics: 6.02
     - _NebulaHue: -0.31
     - _NebulaIntensity: -0.4
+    - _NebulaOffset: 1
     - _NebulaSat: 0.98
     - _NebulaSpeed: 3
     - _NebulaValue: 1.33

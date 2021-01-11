@@ -24,7 +24,8 @@
         _StarDirection("StarDirection", Vector) = (1,0,0,0)
         _RampLine("Ramp Line", Int) = 0
         _NebulaValue("NebulaValue", Float) = 1.0
-            _NebulaSpeed("NebulaSpeed", Float) = 1.0
+        _NebulaSpeed("NebulaSpeed", Float) = 1.0
+        _NebulaOffset("NebulaOffset", Float) = 1.0
     }
     SubShader
     {
@@ -63,7 +64,7 @@
             float2 _MousePosition;
             float _RampLine;
             float2 _StarDirection;
-            float _NebulaValue, _NebulaSpeed;
+            float _NebulaValue, _NebulaSpeed, _NebulaOffset;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -93,7 +94,7 @@
             float4 Nebula(float2 uv, float harmonic)
             {
                 float2 mouse_offset = (_MousePosition / _ScreenParams.xy) * _SlideIntensity * 5 * harmonic;
-                float4 sliding_fine_noise = tex2D(_FineNoiseTex, ((uv + mouse_offset + ((_Time.x + harmonic) / _NebulaSpeed) * _StarDirection) / 2 ) * harmonic);
+                float4 sliding_fine_noise = tex2D(_FineNoiseTex, ((uv + mouse_offset + ((_Time.x + _NebulaOffset + harmonic) / _NebulaSpeed) * _StarDirection) / 2 ) * harmonic);
 
                 float r = 1-sliding_fine_noise.r;
                 float g = sliding_fine_noise.g;

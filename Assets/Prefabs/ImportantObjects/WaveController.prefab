@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4030578984682748991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4030578984682748985}
+  - component: {fileID: 4030578984682748990}
+  - component: {fileID: 4030578984682748984}
+  m_Layer: 0
+  m_Name: WaveController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4030578984682748985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030578984682748991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4030578984682748990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030578984682748991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83ec341fb3001643ad11ab04d5122ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Waves: []
+  Repetitions: 10
+  Ready: 0
+  Pause: 0
+  iteration: 0
+  current_wave: {fileID: 0}
+  wg: {fileID: 4030578984682748984}
+--- !u!114 &4030578984682748984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030578984682748991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6684726fba84414189f1f1a1829c57c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wc: {fileID: 4030578984682748990}
+  WaveDescritors:
+  - {fileID: 11400000, guid: 91952ccbd70490240b5f8fa72486c2e7, type: 2}
+  BaseWave: {fileID: 6981940431285612186, guid: 8f7c60b0f35fcc34e9dccdf783c20452, type: 3}
+  Wave: 10

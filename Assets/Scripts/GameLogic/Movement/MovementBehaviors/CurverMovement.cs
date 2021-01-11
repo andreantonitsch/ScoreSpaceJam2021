@@ -9,6 +9,20 @@ public class CurverMovement : MovementBehavior
     public float RadPerSec;
     public float AngularAccel;
 
+    public override MovementBehavior RandomBetween(MovementBehavior lower_bound, MovementBehavior upper_bound) 
+    {
+        var lb = (CurverMovement)lower_bound;
+        var ub = (CurverMovement)upper_bound;
+
+        var new_curver = ScriptableObject.CreateInstance(typeof(CurverMovement)) as CurverMovement;
+        new_curver.RadPerSec = Random.Range(lb.RadPerSec, ub.RadPerSec);
+        new_curver.AngularAccel = Random.Range(lb.AngularAccel, ub.AngularAccel);
+
+        return new_curver;
+    }
+
+
+
     public static Vector2 Rotate (Vector2 v, float rad)
     {
         return new Vector2(
@@ -34,13 +48,14 @@ public class CurverMovement : MovementBehavior
         {
             prior = InitPacket(t, forward, position, source);
             prior.type = MovementType.Simple;
+            prior.direction = forward;
         }
 
         var v = prior.direction;
 
         float dt = (ScaledTime.time - prior.t);
-
-        prior.direction = Rotate(prior.direction, (RadPerSec + AngularAccel * dt)*dt  );
+        
+        prior.direction = Rotate(prior.direction, (RadPerSec + AngularAccel * dt) * ScaledTime.fixedDeltaTime);
         return prior;
     }
 }

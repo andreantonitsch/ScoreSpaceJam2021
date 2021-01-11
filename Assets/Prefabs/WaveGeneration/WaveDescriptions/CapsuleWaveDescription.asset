@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42de013c54567254c8cbb4a6cedf645d, type: 3}
+  m_Name: CapsuleWaveDescription
+  m_EditorClassIdentifier: 
+  DurationOnly: 0
+  DurationRange: {x: 8, y: 14}
+  enemies_available: {fileID: 11400000, guid: b15535a7df3a6dc4ba69703f60a7eab4, type: 2}
+  shooting_behaviors: {fileID: 11400000, guid: a05a545f5faa68241bfd8dd53931e7c3, type: 2}

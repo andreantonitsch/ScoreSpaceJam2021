@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e2e62b80da5be4281bf65197df6cd5, type: 3}
+  m_Name: CylinderEnemy
+  m_EditorClassIdentifier: 
+  spawn_group: {fileID: 11400000, guid: caf8fb1f117cd70479041674ec68ac04, type: 2}
+  base_prefab: {fileID: 6953496295351819095, guid: a03c5c739d512af4d8676254c08a53b8, type: 3}
+  movement_group: {fileID: 11400000, guid: af49107a06f3f00428e4f4aec8935be5, type: 2}
+  shooting_group: {fileID: 11400000, guid: 1ff37abefb5dc44488cb567b1793735d, type: 2}
+  MovementElements: 1
+  QuantityRange: {x: 1, y: 3}
+  BulletQuiantity: {x: 40, y: 120}
+  BaseSpeedRange: {x: 4, y: 4}
+  ShootingCooldownRange: {x: 1, y: 5}
+  BurstIntervalRange: {x: 0.1, y: 0.15}
+  BurstDurationRange: {x: 0, y: 2}

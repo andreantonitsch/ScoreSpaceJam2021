@@ -5,13 +5,29 @@ using UnityEngine;
 [RequireComponent(typeof(Destructor))]
 public class HP : InitializableMonoBehavior
 {
+    public delegate void HPChangedEventHandler(int new_quantity);
+    public event HPChangedEventHandler HPChangedEvent;
+
+    public delegate void HPZeroedEventHandler();
+    public event HPZeroedEventHandler HPZeroedEvent;
+
     public int Max;
-    public int Current;
+    private int current;
 
     public Destructor destructor_handler;
+
+    public int Current { get => current; 
+        set 
+        {
+            current = value;
+            HPChangedEvent?.Invoke(current);
+        } 
+    }
+
     public void Start()
     {
         destructor_handler = GetComponent<Destructor>();
+        Init();
     }
 
     public override void Init()
@@ -21,7 +37,8 @@ public class HP : InitializableMonoBehavior
 
     public void Take(Damage d) 
     {
-        Current -= d.Quantity;
+        Current = Current - d.Quantity;
+        
         if (Current <= 0)
             HpZeroed();
     }
@@ -33,6 +50,7 @@ public class HP : InitializableMonoBehavior
 
     public void HpZeroed()
     {
+        HPZeroedEvent?.Invoke();
         destructor_handler.Destroy();
     }
 

@@ -5,7 +5,7 @@ Shader "Unlit/TeleportEffect"
     Properties
     {
          _Color("Color", Color) = (1,0,0,1)
-         _DissolveColor("Dissolve Color", Color) = (0,0,1,0)
+         [HDR]_DissolveColor("Dissolve Color", Color) = (0,0,1,0)
         _MainTex("Main Tex (RGB)", 2D) = "white" {}
         _NoiseTex("Noise Tex (RGB)", 2D) = "white" {}
         _T("T", Range(0,1)) = 1

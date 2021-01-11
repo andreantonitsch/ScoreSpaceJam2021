@@ -6,11 +6,28 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Shooting Behaviors/Delayed Fan")]
 public class DelayedFanShotBehavior : ShotBehavior
 {
-    public int BulletQuantity;
+    //public int BulletQuantity;
     public Vector2 AngleRange;
     public float Delay = 0.1f;
     public float ArcDistance = 0.0f;
     public bool Randomize;
+
+    public override ShotBehavior RandomBetween(ShotBehavior lower_bound, ShotBehavior upper_bound)
+    {
+        var lb = (DelayedFanShotBehavior)lower_bound;
+        var ub = (DelayedFanShotBehavior)upper_bound;
+
+        var new_sb = ScriptableObject.CreateInstance(typeof(DelayedFanShotBehavior)) as DelayedFanShotBehavior;
+        new_sb.BulletQuantity = Random.Range(lb.BulletQuantity, ub.BulletQuantity);
+        new_sb.AngleRange = new Vector2 (Random.Range(lb.AngleRange.x, ub.AngleRange.x), Random.Range(lb.AngleRange.y, ub.AngleRange.y));
+        new_sb.Delay = Random.Range(lb.Delay, ub.Delay);
+        new_sb.ArcDistance = Random.Range(lb.ArcDistance, ub.ArcDistance);
+        new_sb.Randomize = Random.value > 0.5f;
+
+        return new_sb;
+    }
+
+
     public static Vector2 Rotate(Vector2 v, float rad)
     {
         

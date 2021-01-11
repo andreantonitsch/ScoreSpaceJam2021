@@ -52,7 +52,7 @@ public class PlayerMovement : MovementBehavior
             {
                 jump = false;
                 jump_timer = JumpCooldown;
-                prior.direction += Direction;
+                prior.direction += Direction.normalized;
                 prior.data.boundary = bounds.Rect;
             }
         }

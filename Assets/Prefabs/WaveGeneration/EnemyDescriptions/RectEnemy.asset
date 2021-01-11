@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e2e62b80da5be4281bf65197df6cd5, type: 3}
+  m_Name: RectEnemy
+  m_EditorClassIdentifier: 
+  spawn_group: {fileID: 11400000, guid: b9152ddfe0895ba4ebe67a95d992b646, type: 2}
+  base_prefab: {fileID: 8763732044603969440, guid: c2dc90168b57bd04c8b9ec816ff65881, type: 3}
+  movement_group: {fileID: 11400000, guid: 3ee05a4ab8d6c2c44be1ef4327207ddf, type: 2}
+  shooting_group: {fileID: 11400000, guid: 3a3cf3ec68393b9429fb66a99502054a, type: 2}
+  MovementElements: 1
+  QuantityRange: {x: 5, y: 20}
+  BulletQuiantity: {x: 2, y: 3}
+  BaseSpeedRange: {x: 10, y: 15}
+  ShootingCooldownRange: {x: 0.2, y: 0.5}
+  BurstIntervalRange: {x: 0.05, y: 0.1}
+  BurstDurationRange: {x: 0, y: 0.5}

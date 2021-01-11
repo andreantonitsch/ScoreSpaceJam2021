@@ -9,6 +9,19 @@ public class FollowerMovement : MovementBehavior
 {
     public float TurnSpeed;
 
+
+    public override MovementBehavior RandomBetween(MovementBehavior lower_bound, MovementBehavior upper_bound)
+    {
+        var lb = (FollowerMovement)lower_bound;
+        var ub = (FollowerMovement)upper_bound;
+
+        var new_mb = ScriptableObject.CreateInstance(typeof(FollowerMovement)) as FollowerMovement;
+        new_mb.TurnSpeed = Random.Range(lb.TurnSpeed, ub.TurnSpeed);
+
+        return new_mb;
+    }
+
+
     public static Vector2 Rotate (Vector2 v, float rad)
     {
         return new Vector2(
@@ -34,6 +47,7 @@ public class FollowerMovement : MovementBehavior
         {
             prior = InitPacket(t, forward, position, source);
             prior.type = MovementType.Simple;
+            prior.direction = forward;
         }
 
         int i = 0;
@@ -57,7 +71,6 @@ public class FollowerMovement : MovementBehavior
 
         //prior.direction = Rotate(v, TurnSpeed * angle * dt);
         prior.direction = Vector2.Lerp(v, v2,  TurnSpeed  * dt) * prior.direction.magnitude;
-
 
         return prior;
     }

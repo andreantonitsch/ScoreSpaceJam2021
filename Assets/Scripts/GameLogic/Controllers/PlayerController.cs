@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static GameObject Player;
-    void Start()
-    {
-        Player = gameObject;
-    }
+    private static GameObject player;
+    public static float WarpCooldown = 0.75f;
 
+    public static GameObject Player { get { if (player == null) player = FindObjectOfType<PlayerController>()?.gameObject; return player; } }
 }

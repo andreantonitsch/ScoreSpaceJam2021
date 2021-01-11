@@ -13,6 +13,8 @@ public class ShootingPattern : InitializableMonoBehavior
     public float cooldown_timer;
     public GameObject ProjectilePrefab;
 
+
+
     public override void Init()  
     {
         Comission();
@@ -34,17 +36,8 @@ public class ShootingPattern : InitializableMonoBehavior
 
     public void Pattern() 
     {
-        //if (behavior != null && behavior.MoveNext())
-        //{
-        //    var obj = behavior.Current;
-        //}
-        //else
-        //{
-        //    if (behavior != null)
-        //        behavior.Dispose();
-        //    behavior = shot.Activate(transform.position, transform.forward, ProjectilePrefab).GetEnumerator() ;
-        //}
 
+        if(shot != null)
         StartCoroutine(shot.Activate(transform.position, transform.up, ProjectilePrefab).GetEnumerator());
     }
 

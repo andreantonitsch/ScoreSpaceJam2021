@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(Damage))]
 [RequireComponent(typeof(Destructor))]
 [RequireComponent(typeof(DestroyOnCollision))]
+[RequireComponent(typeof(HP))]
+[RequireComponent(typeof(EnemyTracker))]
 public class EnemyComponents : MonoBehaviour
 {
 }

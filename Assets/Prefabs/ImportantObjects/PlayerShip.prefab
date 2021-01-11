@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 1756460139}
   - component: {fileID: 1074149713}
   - component: {fileID: 1157125140}
+  - component: {fileID: 2084940902}
   m_Layer: 8
   m_Name: PlayerShip
   m_TagString: Player
@@ -106,7 +107,7 @@ MonoBehaviour:
   body: {fileID: 0}
   t: {fileID: 0}
   BaseSpeed: 20
-  BaseDodgeDistance: 13
+  BaseDodgeDistance: 9
 --- !u!50 &7137293105039703965
 Rigidbody2D:
   serializedVersion: 4
@@ -226,7 +227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Max: 5
-  Current: 5
   destructor_handler: {fileID: 0}
 --- !u!114 &1074149713
 MonoBehaviour:
@@ -255,3 +255,21 @@ MonoBehaviour:
   TeleportPrefab: {fileID: 915506587796770004, guid: f6a557b2f22eb294a88aad2f2577a80e, type: 3}
   TeleportMaterial: {fileID: 2100000, guid: 95075b68fd01f6b45a602425d06df3af, type: 2}
   t: 0
+--- !u!114 &2084940902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7137293105039703964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2059c657e8eb856499f13b964ee3de92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_material: {fileID: 2100000, guid: e04086e8424e46848ba9cfe1d853bf26, type: 2}
+  player_collider: {fileID: 0}
+  mp: {fileID: 0}
+  hp: {fileID: 0}
+  InvicibilityDuration: 0.2
+  timer: 0

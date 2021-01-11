@@ -5,10 +5,25 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Shooting Behaviors/Forward")]
 public class ForwardShotBehavior : ShotBehavior
 {
-    public int BulletQuantity;
+    //public int BulletQuantity;
     public float Spacing;
     public float Delay = 0.1f;
     public bool Randomize = false;
+
+    public override ShotBehavior RandomBetween(ShotBehavior lower_bound, ShotBehavior upper_bound)
+    {
+        var lb = (ForwardShotBehavior)lower_bound;
+        var ub = (ForwardShotBehavior)upper_bound;
+
+        var new_sb = ScriptableObject.CreateInstance(typeof(ForwardShotBehavior)) as ForwardShotBehavior;
+        new_sb.BulletQuantity = Random.Range(lb.BulletQuantity, ub.BulletQuantity);
+        new_sb.Delay = Random.Range(lb.Delay, ub.Delay);
+        new_sb.Spacing = Random.Range(lb.Spacing, ub.Spacing);
+        new_sb.Randomize = Random.value > 0.5f;
+
+        return new_sb;
+    }
+
 
     public override IEnumerable Activate(Vector2 anchor, Vector2 forward, GameObject prefab)
     {

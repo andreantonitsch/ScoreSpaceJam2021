@@ -10,6 +10,8 @@ public class ArcadeMovement : Movement
     public float BaseSpeed;
     public float BaseDodgeDistance;
 
+    public delegate void TeleportTriggeredEventHandler();
+    public event TeleportTriggeredEventHandler TeleportTriggeredEvent;
     public void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -20,7 +22,10 @@ public class ArcadeMovement : Movement
     public override void Move(Vector2 direction)
     {
         if (direction != Vector2.zero)
+        {
             body.MovePosition(body.position + direction * BaseSpeed * ScaledTime.fixedDeltaTime);
+            body.transform.up = direction;
+        }
     }
 
     // MUST be called on Update
@@ -56,6 +61,7 @@ public class ArcadeMovement : Movement
         var p = body.position + direction * BaseDodgeDistance;
         var clamped_pos = new Vector2(Mathf.Min(bounds.x, Mathf.Max(p.x, bounds.z)),
                                       Mathf.Min(bounds.y, Mathf.Max(p.y, bounds.w)));
+        TeleportTriggeredEvent.Invoke();
         t.position = clamped_pos;
     }
 

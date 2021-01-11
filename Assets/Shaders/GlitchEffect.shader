@@ -13,7 +13,8 @@ Shader "Unlit/GlitchEffect"
         _TimeScale("TimeScale", Float) = 1
         _SlideRatio("SlideRatio", Float) = 0.1
         _BlinkRatio("BlinkRatio", Float) = 0.01
-        _Transparency ("TransparencyRange", Vector) = (0, 1, 0, 0)
+        _Transparency("TransparencyRange", Vector) = (0, 1, 0, 0)
+        _RimLightValue("RimParamenter", Float) = 0.0
     }
         SubShader
         {
@@ -59,6 +60,7 @@ Shader "Unlit/GlitchEffect"
             float _Slide;
             float _Slices, _TimeScale, _SlideRatio, _BlinkRatio;
             float2 _Transparency;
+            float _RimLightValue;
 
             float hash11(float x)
             {
@@ -85,10 +87,10 @@ Shader "Unlit/GlitchEffect"
 
                 //float slice = trunc(i.uv.y * _Slices);
                 float slice = trunc(screen_coords.y * _Slices);
-                float clip_value = hash11(slice * (trunc(_Time.w / _TimeScale))) > _SlideRatio;
+                float clip_value = hash11(slice * (trunc((_Time.w + _TimeScale) / _TimeScale))) > _SlideRatio;
                 clip(clip_value - 0.01);
 
-                float3 noise = tex2D(_NoiseTex, float2((slice + _Time.w / _TimeScale) / _Slices, (frac(_Time.w / (_TimeScale * 2)))));
+                float3 noise = tex2D(_NoiseTex, float2((slice + (_Time.w + _TimeScale)) / _Slices, (frac((_Time.w + _TimeScale) / (_TimeScale * 2)))));
 
 
                 float VN_dot = abs(dot(i.normal, i.view_dir));
@@ -96,7 +98,7 @@ Shader "Unlit/GlitchEffect"
                 float alpha_blink = noise < _BlinkRatio;
 
                 
-                fixed4 col = lerp(_RimColor, _Color, VN_dot * VN_dot);
+                fixed4 col = lerp(_RimColor, _Color, VN_dot * VN_dot +  _RimLightValue);
                 col.a = lerp( lerp(_Transparency.x, _Transparency.y, noise.y), _Transparency.y, 1 - (VN_dot + sin(_Time.w *1) / 30)) * alpha_blink * noise.z;
 
                 
@@ -139,7 +141,7 @@ Shader "Unlit/GlitchEffect"
                 float _Slide;
                 float _Slices, _TimeScale, _SlideRatio;
                 float2 _Transparency;
-
+                float _RimLightValue;
                 float hash11(float x)
                 {
                     return frac(sin(x + 445.5234) * 117.523354);
@@ -176,13 +178,13 @@ Shader "Unlit/GlitchEffect"
 
                 float slice = trunc(screen_coords.y * _Slices) ;
                 //float slice = trunc(i.uv.y * _Slices);
-                float clip_value = hash11(slice * (trunc(_Time.w / _TimeScale))) <= _SlideRatio;
+                float clip_value = hash11(slice * (trunc((_Time.w + _TimeScale)))) <= _SlideRatio;
                 clip(clip_value - 0.1);
 
                 float VN_dot = abs(dot(i.normal, i.view_dir));
 
 
-                fixed4 col = lerp(_RimColor, _Color, VN_dot * VN_dot);
+                fixed4 col = lerp(_RimColor, _Color, VN_dot * VN_dot + _RimLightValue);
                 col.a = lerp(_Transparency.x, _Transparency.y, 1 - (VN_dot + sin(_Time.w * 1) / 30));
                 return col * 3;
                 }

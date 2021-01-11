@@ -6,9 +6,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Shooting Behaviors/Fan")]
 public class FanShotBehavior : ShotBehavior
 {
-    public int BulletQuantity;
+    //public int BulletQuantity;
     public Vector2 AngleRange;
 
+    public override ShotBehavior RandomBetween(ShotBehavior lower_bound, ShotBehavior upper_bound)
+    {
+        var lb = (FanShotBehavior)lower_bound;
+        var ub = (FanShotBehavior)upper_bound;
+
+        var new_sb = ScriptableObject.CreateInstance(typeof(FanShotBehavior)) as FanShotBehavior;
+        new_sb.BulletQuantity = Random.Range(lb.BulletQuantity, ub.BulletQuantity);
+        new_sb.AngleRange = new Vector2(Random.Range(lb.AngleRange.x, ub.AngleRange.x), Random.Range(lb.AngleRange.y, ub.AngleRange.y));
+
+        return new_sb;
+    }
 
     public static Vector2 Rotate(Vector2 v, float rad)
     {

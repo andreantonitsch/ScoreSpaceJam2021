@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e2e62b80da5be4281bf65197df6cd5, type: 3}
+  m_Name: RoundEnemy
+  m_EditorClassIdentifier: 
+  spawn_group: {fileID: 11400000, guid: 01065e841c955114cb0d134a8fb82287, type: 2}
+  base_prefab: {fileID: 1256503378303561603, guid: 33fd9fa52a2897e4e83b7a6c5ce35652, type: 3}
+  movement_group: {fileID: 11400000, guid: f69f027a359c44a4e86e2cb5de8fe3a7, type: 2}
+  shooting_group: {fileID: 11400000, guid: 498738b5cc4203146b65d9dd1faa7c37, type: 2}
+  MovementElements: 2
+  QuantityRange: {x: 5, y: 10}
+  BulletQuiantity: {x: 0, y: 0}
+  BaseSpeedRange: {x: 6, y: 8}
+  ShootingCooldownRange: {x: 0, y: 0}
+  BurstIntervalRange: {x: 0, y: 0}
+  BurstDurationRange: {x: 0, y: 0}

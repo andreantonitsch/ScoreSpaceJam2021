@@ -108,5 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ba2a5f17ab3cf42922877190bf0ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 1
+  Timer: 0.75
   d_handler: {fileID: 0}

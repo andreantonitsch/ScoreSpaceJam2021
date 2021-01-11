@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e2e62b80da5be4281bf65197df6cd5, type: 3}
+  m_Name: BossEnemy
+  m_EditorClassIdentifier: 
+  spawn_group: {fileID: 11400000, guid: 7f8665cc98efa5148b6a41377aa61c9e, type: 2}
+  base_prefab: {fileID: 5120267080598450789, guid: 685d53d21189c45459f052816f3935f3, type: 3}
+  movement_group: {fileID: 11400000, guid: dd07ce947085a09439f01b3c3980fa37, type: 2}
+  shooting_group: {fileID: 11400000, guid: ec01a2217ef0af947837be62348842c3, type: 2}
+  MovementElements: 1
+  QuantityRange: {x: 1, y: 1}
+  BulletQuiantity: {x: 15, y: 15}
+  BaseSpeedRange: {x: 1, y: 1}
+  ShootingCooldownRange: {x: 3, y: 3}
+  BurstIntervalRange: {x: 0.1, y: 0.2}
+  BurstDurationRange: {x: 0, y: 1}

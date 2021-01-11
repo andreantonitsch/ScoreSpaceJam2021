@@ -9,6 +9,9 @@ public class MovementPattern : InitializableMonoBehavior
     [SerializeField]
     public List<MovementBehavior> behaviours;
 
+    public delegate void TeleportTriggeredEventHandler();
+    public event TeleportTriggeredEventHandler TeleportTriggeredEvent;
+
     public float init_time;
     public void Start()
     {

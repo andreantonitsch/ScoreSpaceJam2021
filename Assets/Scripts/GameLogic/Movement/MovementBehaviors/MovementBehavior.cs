@@ -36,6 +36,8 @@ public struct MovementPacket
 [System.Serializable]
 public class MovementBehavior : ScriptableObject
 {
+    public virtual MovementBehavior RandomBetween(MovementBehavior lower_bound, MovementBehavior upper_bound) { return null; }
+
 
     public virtual MovementPacket FixedApply(MovementPacket prior, bool init = false, float t = 0, Vector2 forward = default(Vector2), Vector2 position = default(Vector2), GameObject source = default(GameObject))
     {
