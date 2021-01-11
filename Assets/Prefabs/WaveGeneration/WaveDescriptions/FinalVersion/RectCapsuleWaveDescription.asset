@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42de013c54567254c8cbb4a6cedf645d, type: 3}
+  m_Name: RectCapsuleWaveDescription
+  m_EditorClassIdentifier: 
+  DurationOnly: 0
+  DurationRange: {x: 0, y: 0}
+  enemies_available: {fileID: 11400000, guid: 5784b4696df637448ae471b8905b487e, type: 2}
+  shooting_behaviors: {fileID: 11400000, guid: 792821c90d27be9458910230dba98908, type: 2}

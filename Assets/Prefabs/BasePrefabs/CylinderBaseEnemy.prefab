@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 6953496295351819094}
   - component: {fileID: 2267430484589857271}
   - component: {fileID: -171937625037485817}
+  - component: {fileID: 9052625513022951686}
   m_Layer: 10
   m_Name: CylinderBaseEnemy
   m_TagString: Untagged
@@ -317,3 +318,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2bdcec99e27af4e835f8ff353a8632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9052625513022951686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953496295351819095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d885ef02b961daa439a172caf77d336c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 6953496295351819089}
+  Explosion: {fileID: 4985224589302411375, guid: d2e45826ca71d4e4484530b27ad69cf6, type: 3}

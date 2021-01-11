@@ -11,17 +11,79 @@ public struct EnemySpawnData
 
 }
 
+[System.Serializable]
+public struct SectionWavePossibilities
+{
+    public List<int> indexes;
+}
+
 public class WaveGenerator : MonoBehaviour
 {
     public EnemyWaveController wc;
     public List<EnemyWaveDescriptor> WaveDescritors;
     public GameObject BaseWave;
     public int Wave = 10;
+
+    public EnemyWaveDescriptor SpecialWave;
+    public bool SpecialSectionIsAGo = false;
+    public List<EnemyWaveDescriptor> CurrentWavePossibilities = new List<EnemyWaveDescriptor>();
+
+    public List<SectionWavePossibilities> SectionPossibilities;
+
+
     public void Start()
     {
+        wc.SectionEndedEvent += SectionEnded;
+    }
+
+    public void SectionEnded(int current_section)
+    {
+        AdvanceSectionWaves(current_section);
+        GenerateSection();
+    }
+
+    public void AdvanceSectionWaves(int current_section)
+    {
+        if (current_section == SectionPossibilities.Count)
+        {
+            SpecialSectionIsAGo = true;
+
+            return;
+        }
+
+        var l = new List<EnemyWaveDescriptor>();
+
+        foreach (var i in SectionPossibilities[current_section].indexes)
+        {
+            l.Add(WaveDescritors[i]);
+        }
+
+        CurrentWavePossibilities.AddRange(l);
+    }
+
+    public void GenerateSpecialSection()
+    {
+        var w = GenerateWave(SpecialWave);
+        wc.Waves.Add(w);
+        w.transform.parent = this.transform;
+    }
+
+    public void GenerateSection()
+    {
+        if (SpecialSectionIsAGo)
+        {
+            GenerateSpecialSection();
+            return;
+        }
+
+        wc.Waves.Clear();
+        foreach (Transform t in transform)
+            Destroy(t.gameObject);
+
         for (int i = 0; i < Wave; i++)
         {
-            var w = GenerateWave(WaveDescritors[0]);
+            int ix = Random.Range(0, CurrentWavePossibilities.Count - 1);
+            var w = GenerateWave(CurrentWavePossibilities[ix]);
             wc.Waves.Add(w);
             w.transform.parent = this.transform;
         }

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 8763732044603969441}
   - component: {fileID: 1003594006246331553}
   - component: {fileID: 419196823180453995}
+  - component: {fileID: -3721583427414157002}
   m_Layer: 10
   m_Name: RectBaseEnemy
   m_TagString: Untagged
@@ -317,3 +318,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2bdcec99e27af4e835f8ff353a8632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3721583427414157002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763732044603969440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d885ef02b961daa439a172caf77d336c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 8763732044603969442}
+  Explosion: {fileID: 4985224589302411375, guid: d2e45826ca71d4e4484530b27ad69cf6, type: 3}

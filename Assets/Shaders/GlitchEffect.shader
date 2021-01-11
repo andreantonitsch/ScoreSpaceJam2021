@@ -142,6 +142,7 @@ Shader "Unlit/GlitchEffect"
                 float _Slices, _TimeScale, _SlideRatio;
                 float2 _Transparency;
                 float _RimLightValue;
+
                 float hash11(float x)
                 {
                     return frac(sin(x + 445.5234) * 117.523354);

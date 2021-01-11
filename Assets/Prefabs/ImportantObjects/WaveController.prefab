@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waves: []
-  Repetitions: 10
+  Repetitions: 5
   Ready: 0
   Pause: 0
   iteration: 0
   current_wave: {fileID: 0}
   wg: {fileID: 4030578984682748984}
+  SectionNumber: 0
+  WaveNumber: 0
 --- !u!114 &4030578984682748984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +67,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wc: {fileID: 4030578984682748990}
   WaveDescritors:
-  - {fileID: 11400000, guid: 91952ccbd70490240b5f8fa72486c2e7, type: 2}
+  - {fileID: 11400000, guid: 71669ce3ed0eea342aefc007b8d6ea74, type: 2}
+  - {fileID: 11400000, guid: 94bd0cb6079623f40a2a9d1f35473be3, type: 2}
+  - {fileID: 11400000, guid: e77848c00e1377245936a135d835860a, type: 2}
+  - {fileID: 11400000, guid: 5ef58cf5cbd59d94698f0ed02173602e, type: 2}
+  - {fileID: 11400000, guid: 7254930e609bd604b98860a92cd24242, type: 2}
+  - {fileID: 11400000, guid: 491d768c49286c84384cac739746bc4e, type: 2}
+  - {fileID: 11400000, guid: b500aa1b407be9e458eed97159ad022e, type: 2}
   BaseWave: {fileID: 6981940431285612186, guid: 8f7c60b0f35fcc34e9dccdf783c20452, type: 3}
   Wave: 10
+  SpecialWave: {fileID: 0}
+  SpecialSectionIsAGo: 0
+  CurrentWavePossibilities:
+  - {fileID: 11400000, guid: 32dc065fe40505c4da5af736d4928772, type: 2}
+  SectionPossibilities:
+  - indexes: 00000000
+  - indexes: 0100000002000000
+  - indexes: 
+  - indexes: 0300000004000000
+  - indexes: 040000000500000006000000

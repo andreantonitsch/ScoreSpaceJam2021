@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
 
     public ScoreController sc;
     public ArcadeMovement am;
+    public EnemyWaveController wc;
 
     public GameObject WarpReady;
     public GameObject WarpNotReady;
@@ -24,7 +25,12 @@ public class UIController : MonoBehaviour
         var player_hp = PlayerController.Player.GetComponent<HP>();
         var am = PlayerController.Player.GetComponent<ArcadeMovement>();
 
-        UpdateHP(5);
+
+        wc = FindObjectOfType<EnemyWaveController>();
+        wc.WaveEndedEvent += UpdateWaves;
+
+
+        UpdateHP(player_hp.Max);
         player_hp.HPChangedEvent += UpdateHP;
         am.TeleportTriggeredEvent += UpdateWarp;
 
@@ -42,6 +48,12 @@ public class UIController : MonoBehaviour
         if (quantity > 0)
             hp_text.text = new string('I', quantity);
     }
+
+    public void UpdateWaves(int quantity)
+    {
+        wave_text.text = $"{wc.SectionNumber} : {wc.WaveNumber}";
+    }
+
 
 
     public IEnumerator WarpTimer(float duration)

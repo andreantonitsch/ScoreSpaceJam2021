@@ -10,7 +10,7 @@ public class PlaceholderStart : MonoBehaviour
     public IEnumerator DelayedStart(float wait)
     {
         yield return new WaitForSeconds(wait);
-        wc.Ready = true;
+        wc.AskForNewSection();
         
     }
     public void Start()

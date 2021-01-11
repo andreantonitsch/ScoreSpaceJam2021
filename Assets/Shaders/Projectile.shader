@@ -54,10 +54,11 @@
             float4 _Color, _OutlineColor;
 
             float remap_range(float x, float2 old_range, float2 new_range) {
-                x -= old_range.x;
-                x /= (old_range.y - old_range.x);
-                x *= (new_range.y - new_range.x);
-                return x + new_range.x;
+                float y = x;
+                y -= old_range.x;
+                y /= (old_range.y - old_range.x);
+                y *= (new_range.y - new_range.x);
+                return y + new_range.x;
             }
 
             v2f vert (appdata v)

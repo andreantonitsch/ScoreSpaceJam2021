@@ -7,11 +7,17 @@ using UnityEngine;
 
 public class EnemyWaveController : MonoBehaviour
 {
+    public delegate void WaveEndedHandler(int wave_number);
+    public event WaveEndedHandler WaveEndedEvent;
+
+    public delegate void SectionEndedHandler(int section_number);
+    public event SectionEndedHandler SectionEndedEvent;
+
     public List<EnemyWave> Waves;
     public int Repetitions;
 
     public bool Ready = true;
-    public bool Pause = true;
+    public bool Pause = false;
 
     public int iteration = 0;
 
@@ -19,16 +25,38 @@ public class EnemyWaveController : MonoBehaviour
 
     public WaveGenerator wg;
 
+
+    public int SectionNumber = 0;
+    public int WaveNumber = 0;
+
     public void Update()
     {
         if (Ready && !Pause) PlaySection();
 
     }
 
-    public void PrepareSection()
+    public void AskForNewSection()
     {
-
+        Waves.Clear();
+        wg.GenerateSection();
+        Ready = true;
     }
+
+    public void PauseWaves()
+    {
+        SectionNumber += 1;
+        iteration = 0;
+        Pause = true;
+        SectionEndedEvent.Invoke(SectionNumber);
+    }
+
+    public void UnpauseWaves()
+    {
+        AskForNewSection();
+        Pause = false;
+        iteration = 0;
+    }
+
 
     public void PlaySection()
     {
@@ -37,12 +65,15 @@ public class EnemyWaveController : MonoBehaviour
             StartCoroutine(Section());
             iteration++;
         }
+        if(iteration == Repetitions && Ready)
+            PauseWaves();
     }
 
     public IEnumerator Section()
     {
         Ready = false;
-        foreach(var wave in Waves)
+        var current_waves = new List<EnemyWave>(Waves);
+        foreach(var wave in current_waves)
         {
             current_wave = wave;
             float duration = wave.Duration;
@@ -57,12 +88,15 @@ public class EnemyWaveController : MonoBehaviour
                 duration -= 1.0f;
                 yield return new WaitForSeconds(1f);
             }
-            
-            
+
+            WaveNumber += 1;
+            WaveEndedEvent?.Invoke(WaveNumber);
+
+
         }
-        
-        Ready = true;
+
         yield return null;
+        Ready = true;
     }
 
 

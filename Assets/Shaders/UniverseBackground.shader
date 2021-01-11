@@ -122,11 +122,11 @@
             float4 BrightStar(float2 uv, float4 noise_col, float harmonic) 
             {
                 harmonic *= 0.3f;
-                float2 mouse_offset = (_MousePosition / _ScreenParams.xy) * 5* _SlideIntensity * harmonic;
+                //float2 mouse_offset = (_MousePosition / _ScreenParams.xy) * 5* _SlideIntensity * harmonic;
                 float2 time_offset = _StarDirection * (_Time.y / harmonic) / _TimeScale;
                 float2 harmonic_offset = uv * harmonic;
 
-                float4 star_grid_coords = cell_coordinates(uv + mouse_offset + time_offset + harmonic_offset, _StarGridSide * harmonic);
+                float4 star_grid_coords = cell_coordinates(uv /*+ mouse_offset */+ time_offset + harmonic_offset, _StarGridSide * harmonic);
 
 
                 float4 color = 0.0f;

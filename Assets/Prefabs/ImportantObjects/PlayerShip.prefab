@@ -187,7 +187,7 @@ MonoBehaviour:
   trigger: {fileID: 7137293105039703941}
   Cooldown: 0.4
   cooldown_timer: 0
-  ProjectilePrefab: {fileID: 6283553930997004804, guid: 2b5554b5c202fc94d9121b1b92358101, type: 3}
+  ProjectilePrefab: {fileID: 0}
 --- !u!114 &7137293105039703941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5829dc3d10c04bf41ab192114bf5ba15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max: 5
+  Max: 15
   destructor_handler: {fileID: 0}
 --- !u!114 &1074149713
 MonoBehaviour:

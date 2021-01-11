@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42de013c54567254c8cbb4a6cedf645d, type: 3}
+  m_Name: RectCapsuleCylinderWaveDescription
+  m_EditorClassIdentifier: 
+  DurationOnly: 0
+  DurationRange: {x: 10, y: 12}
+  enemies_available: {fileID: 11400000, guid: eba0651096a3a4949a3ee84cc63cdbe5, type: 2}
+  shooting_behaviors: {fileID: 11400000, guid: 498738b5cc4203146b65d9dd1faa7c37, type: 2}
