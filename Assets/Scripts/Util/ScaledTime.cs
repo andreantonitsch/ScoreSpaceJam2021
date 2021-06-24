@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ScaledTime
+public class ScaledTime : MonoBehaviour
 {
 
     public static float TimeScale = 1.0f;
+
+    private static float _time;
 
     public static float deltaTime
     {
@@ -27,7 +29,13 @@ public static class ScaledTime
     {
         get
         {
-            return Time.time * TimeScale;
+            return _time;
         }
+    }
+
+
+    public void FixedUpdate()
+    {
+        _time += TimeScale * Time.fixedDeltaTime;
     }
 }

@@ -55,6 +55,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NebulaDistTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NebulaRampTex:
         m_Texture: {fileID: 2800000, guid: 0b076365188fe474e9015a8316b78eb1, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -81,6 +85,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NebulaBright: 0.02
+    - _NebulaDistortion: 1
     - _NebulaHarmonics: 6.02
     - _NebulaHue: -0.31
     - _NebulaIntensity: -0.4
@@ -96,11 +101,11 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StarBright: 0.02
-    - _StarDensity: 0.4
-    - _StarGridSide: 21.65
-    - _StarHarmonics: 4
+    - _StarDensity: 0.05
+    - _StarGridSide: 60
+    - _StarHarmonics: 3
     - _StarSat: 0.73
-    - _TimeScale: 29.2
+    - _TimeScale: 75
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
@@ -109,4 +114,5 @@ Material:
     - _NebulaHarmonics: {r: 1, g: 1, b: 0, a: 0}
     - _NoiseSlice: {r: 0.47, g: 0.09, b: 1, a: 1}
     - _StarDirection: {r: 0, g: -1, b: 0, a: 0}
+    - _StarHarmonics: {r: 1, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []

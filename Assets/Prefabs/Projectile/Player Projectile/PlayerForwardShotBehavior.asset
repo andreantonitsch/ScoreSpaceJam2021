@@ -15,4 +15,4 @@ MonoBehaviour:
   BulletQuantity: 2
   Spacing: 0.2
   Delay: 0.05
-  Randomize: 0
+  Randomize: 1

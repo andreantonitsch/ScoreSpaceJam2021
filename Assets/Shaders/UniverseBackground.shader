@@ -5,7 +5,7 @@
         _FineNoiseTex("Fine Noise Texture", 2D) = "white" {}
         _CoarseNoiseTex("Coarse Noise Texture", 2D) = "white" {}
         _NoiseSlice ("NoiseSlice", Vector) = (1,1,1,1)
-        _StarHarmonics ("Star Harmonics", Range(1, 10)) = 3
+        _StarHarmonics ("Star Harmonics", Vector) = (0,3,0,0)
         _StarGridSide ("Bright Star Grid Side", Float) = 5
         _StarBright ("Star Brightness", Float) = 0.3
         _StarSat ("Star Saturation", Float) = 0.6
@@ -26,6 +26,9 @@
         _NebulaValue("NebulaValue", Float) = 1.0
         _NebulaSpeed("NebulaSpeed", Float) = 1.0
         _NebulaOffset("NebulaOffset", Float) = 1.0
+
+        _NebulaDistortion("NebulaDistortion", Float) = 1.0
+        _NebulaDistTex ("NebulaDistortionTex", 2D)  = "black" {}
     }
     SubShader
     {
@@ -57,14 +60,16 @@
             float4 _CoarseNoiseTex_ST;
             sampler2D _FineNoiseTex, _CoarseNoiseTex, _NebulaRampTex;
             float2 _NoiseSlice;
-            uint _StarHarmonics;
+            uint2 _StarHarmonics;
             float _StarGridSide, _NebulaIntensity, _StarDensity, _StarBright, _StarSat, _TimeScale, _BGSat, _BGBright, _BGIntensity, _SlideIntensity;
             float _NebulaSat, _NebulaBright, _NebulaHue;
             float2 _NebulaHarmonics;
             float2 _MousePosition;
             float _RampLine;
             float2 _StarDirection;
-            float _NebulaValue, _NebulaSpeed, _NebulaOffset;
+            float _NebulaValue, _NebulaSpeed, _NebulaOffset, _NebulaDistortion;
+            sampler2D  _NebulaDistTex;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -94,7 +99,13 @@
             float4 Nebula(float2 uv, float harmonic)
             {
                 float2 mouse_offset = (_MousePosition / _ScreenParams.xy) * _SlideIntensity * 5 * harmonic;
-                float4 sliding_fine_noise = tex2D(_FineNoiseTex, ((uv + mouse_offset + ((_Time.x + _NebulaOffset + harmonic) / _NebulaSpeed) * _StarDirection) / 2 ) * harmonic);
+
+                float2 tex_uv = ((uv + mouse_offset + ((_Time.x + _NebulaOffset + harmonic) / _NebulaSpeed) * _StarDirection) / 2) * harmonic;
+
+                float4 dist_tex = tex2D(_NebulaDistTex, tex_uv);
+                //dist_tex = tex2D(_NebulaDistTex, dist_tex.rg);
+                float distortion_uv = (dist_tex.rg - 0.5) * 2;
+                float4 sliding_fine_noise = tex2D(_FineNoiseTex, tex_uv + (distortion_uv * _NebulaDistortion));
 
                 float r = 1-sliding_fine_noise.r;
                 float g = sliding_fine_noise.g;
@@ -158,9 +169,6 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-
-
-
                 float4 col = float4(0.0f, 0.0f, 0.0f, 0.0f);
                 // sample the texture
                 float4 sliding_coarse_noise = tex2D(_CoarseNoiseTex, (i.uv + _Time.x / 30) /2);
@@ -184,11 +192,11 @@
                 float4 front_stars = float4(0.0f, 0.0f, 0.0f, 1.0f);
                 float4 back_stars = float4(0.0f, 0.0f, 0.0f, 1.0f);
 
-                for (float j = 1; j < _StarHarmonics; j++)
+                for (float j = _StarHarmonics.x; j < _StarHarmonics.y; j++)
                 {
                     front_stars += BrightStar(i.uv , fine_noise, j) / j;
                 }
-                back_stars = BrightStar(i.uv, fine_noise, _StarHarmonics) / _StarHarmonics;
+                back_stars = BrightStar(i.uv, fine_noise, _StarHarmonics.y) / _StarHarmonics.y;
 
                 float4 nebula_backstars = lerp(back_stars, nebula_color, 1) * _NebulaValue;
 

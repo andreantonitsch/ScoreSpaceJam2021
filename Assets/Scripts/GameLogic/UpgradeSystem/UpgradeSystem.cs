@@ -34,7 +34,7 @@ public class UpgradeSystem : MonoBehaviour
 
         for (int i = 0; i <= count; i++)
         {
-            text.text = $"Pick your Upgrades\nBelow In...\n{3-i}...";
+            text.text = $"Pick your Upgrades\nIn...\n{3-i}...";
             yield return new WaitForSeconds(1);
         }
 
@@ -71,7 +71,7 @@ public class UpgradeSystem : MonoBehaviour
 
     public void AttackSpeedPlus()
     {
-        player.GetComponent<ShootingPattern>().Cooldown-= 0.2f;
+        player.GetComponent<ShootingPattern>().Cooldown-= 0.1f;
         UnpauseWaves();
     }
 
